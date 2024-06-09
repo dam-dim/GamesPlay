@@ -3,21 +3,21 @@ export default function () {
         <header>
             {/* <!-- Navigation --> */}
             <h1>
-                <a className="home" href="#">
+                <a className="home" href="/">
                     GamesPlay
                 </a>
             </h1>
             <nav>
-                <a href="#">All games</a>
+                <a href="/catalogue">All games</a>
                 {/* <!-- Logged-in users --> */}
                 <div id="user">
-                    <a href="#">Create Game</a>
-                    <a href="#">Logout</a>
+                    <a href="/users/create">Create Game</a>
+                    <a href="/users/logout">Logout</a>
                 </div>
                 {/* <!-- Guest users --> */}
                 <div id="guest">
-                    <a href="#">Login</a>
-                    <a href="#">Register</a>
+                    <a href="/users/login">Login</a>
+                    <a href="/users/register">Register</a>
                 </div>
             </nav>
         </header>
