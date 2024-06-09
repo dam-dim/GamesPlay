@@ -1,12 +1,21 @@
-export default function Create() {
-    const createGameSubmitHandler = (e) => {
-        e.preventDefault();
+import { useNavigate } from "react-router-dom";
 
+import * as gameService from "../../services/games.service";
+
+export default function Create() {
+    const navigate = useNavigate();
+
+    const createGameSubmitHandler = async (e) => {
+        e.preventDefault();
         const gameData = Object.fromEntries(new FormData(e.currentTarget));
 
-        const { title, category, maxLevel, imageUrl, summary } = gameData;
-
-        console.log(gameData);
+        try {
+            await gameService.create(gameData);
+            navigate("/catalogue");
+        } catch (error) {
+            // TODO: Error notification
+            console.log(error);
+        }
     };
 
     return (
