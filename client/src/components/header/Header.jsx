@@ -1,23 +1,25 @@
+import { Link } from "react-router-dom";
+
 export default function () {
     return (
         <header>
             {/* <!-- Navigation --> */}
             <h1>
-                <a className="home" href="/">
+                <Link className="home" to="/">
                     GamesPlay
-                </a>
+                </Link>
             </h1>
             <nav>
-                <a href="/catalogue">All games</a>
+                <Link to="/catalogue">All games</Link>
                 {/* <!-- Logged-in users --> */}
                 <div id="user">
-                    <a href="/users/create">Create Game</a>
-                    <a href="/users/logout">Logout</a>
+                    <Link to="/create">Create Game</Link>
+                    <Link to="/logout">Logout</Link>
                 </div>
                 {/* <!-- Guest users --> */}
                 <div id="guest">
-                    <a href="/users/login">Login</a>
-                    <a href="/users/register">Register</a>
+                    <Link to="/login">Login</Link>
+                    <Link to="/register">Register</Link>
                 </div>
             </nav>
         </header>
