@@ -5,6 +5,7 @@ import * as gameService from "../../services/games.service";
 export default function Create() {
     const navigate = useNavigate();
 
+    // TODO: Add validation
     const createGameSubmitHandler = async (e) => {
         e.preventDefault();
         const gameData = Object.fromEntries(new FormData(e.currentTarget));
