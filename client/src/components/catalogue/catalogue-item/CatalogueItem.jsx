@@ -1,4 +1,7 @@
-export function CatalogueItem({ title, category, imageUrl }) {
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+
+export function CatalogueItem({ title, category, imageUrl, _id }) {
     return (
         <div className="allGames">
             <div className="allGames-info">
@@ -6,9 +9,12 @@ export function CatalogueItem({ title, category, imageUrl }) {
                 <h6>{category}</h6>
                 <h2>{title}</h2>
                 {/* TODO */}
-                <a href="#" className="details-button">
+                <Link
+                    to={`/catalogue/${_id}/details`}
+                    className="details-button"
+                >
                     Details
-                </a>
+                </Link>
             </div>
         </div>
     );
