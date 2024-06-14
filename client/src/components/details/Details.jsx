@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import * as gameService from "../../services/games.service";
-import * as commentService from "../../services/comments.service";
+import * as gameService from "../../services/game.service";
+import * as commentService from "../../services/comment.service";
 
 export default function () {
     const { gameId } = useParams();
@@ -14,7 +14,12 @@ export default function () {
 
     const addCommentHandler = (e) => {
         e.preventDefault();
-        console.log("adding comment");
+
+        const formData = Object.fromEntries(new FormData(e.currentTarget));
+
+        commentService
+            .create(gameId, formData.username, formData.comment)
+            .then((result) => console.log(result));
     };
     return (
         <section id="game-details">
@@ -65,6 +70,7 @@ export default function () {
             <article className="create-comment">
                 <label>Add new comment:</label>
                 <form className="form" onSubmit={addCommentHandler}>
+                    <input type="text" name="username" placeholder="username" />
                     <textarea
                         name="comment"
                         placeholder="Comment......"

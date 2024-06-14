@@ -1,9 +1,13 @@
 const request = async (method, url, data) => {
-    const response = await fetch(url, { ...buildOptions(data), method });
+    try {
+        const response = await fetch(url, { ...buildOptions(data), method });
 
-    const result = await response.json();
+        const result = await response.json();
 
-    return result;
+        return result;
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 const buildOptions = (data) => {

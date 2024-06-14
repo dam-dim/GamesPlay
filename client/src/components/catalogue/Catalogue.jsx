@@ -1,7 +1,7 @@
 import { CatalogueItem } from "./catalogue-item/CatalogueItem";
 
 import { useEffect, useState } from "react";
-import * as gameService from "../../services/games.service";
+import * as gameService from "../../services/game.service";
 
 export default function Catalogue() {
     const [games, setGames] = useState([]);
