@@ -15,3 +15,9 @@ export const create = async (gameId, username, text) => {
         console.log(error);
     }
 };
+
+export const getAllByGameId = async (gameId) => {
+    const comments = await request.get(baseUrl);
+
+    return Object.values(comments);
+};
