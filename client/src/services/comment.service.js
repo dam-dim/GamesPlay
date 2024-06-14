@@ -16,8 +16,12 @@ export const create = async (gameId, username, text) => {
     }
 };
 
-export const getAllByGameId = async (gameId) => {
-    const comments = await request.get(baseUrl);
+export const getAllByGameId = async (gameIdFilter) => {
+    let comments = await request.get(baseUrl);
 
-    return Object.values(comments);
+    comments = Object.values(comments);
+
+    comments = comments.filter(({ gameId }) => gameId === gameIdFilter);
+
+    return comments;
 };

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import * as commentService from "../../../services/comment.service";
 
-export default function AddComment() {
+export default function AddComment({ addCommentState }) {
     const { gameId } = useParams();
 
     const addCommentHandler = async (e) => {
@@ -12,11 +12,13 @@ export default function AddComment() {
         const formData = Object.fromEntries(new FormData(e.currentTarget));
 
         try {
-            await commentService.create(
+            const comment = await commentService.create(
                 gameId,
                 formData.username,
                 formData.comment
             );
+
+            addCommentState(comment);
         } catch (error) {
             console.log(error);
         }

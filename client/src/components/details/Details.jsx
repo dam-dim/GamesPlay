@@ -18,6 +18,10 @@ export default function () {
         commentService.getAllByGameId(gameId).then(setComments);
     }, [gameId]);
 
+    const addComment = (comment) => {
+        setComments((state) => [...state, comment]);
+    };
+
     return (
         <section id="game-details">
             <h1>Game Details</h1>
@@ -68,7 +72,7 @@ export default function () {
             </div>
 
             {/* Add Comment ( Only for logged-in users, which is not creators of the current game ) */}
-            <AddComment />
+            <AddComment addCommentState={addComment} />
         </section>
     );
 }
