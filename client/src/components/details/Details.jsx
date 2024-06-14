@@ -1,16 +1,37 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
+import * as gameService from "../../services/games.service";
+import * as commentService from "../../services/comments.service";
+
 export default function () {
+    const { gameId } = useParams();
+    const [game, setGame] = useState({});
+
+    useEffect(() => {
+        gameService.getOne(gameId).then(setGame);
+    }, [gameId]);
+
+    const addCommentHandler = (e) => {
+        e.preventDefault();
+        console.log("adding comment");
+    };
     return (
         <section id="game-details">
             <h1>Game Details</h1>
             <div className="info-section">
                 <div className="game-header">
-                    <img className="game-img" src="images/MineCraft.png" />
-                    <h1>Bright</h1>
-                    <span className="levels">MaxLevel: 4</span>
-                    <p className="type">Action, Crime, Fantasy</p>
+                    <img
+                        className="game-img"
+                        src={game.imageUrl}
+                        alt={game.title}
+                    />
+                    <h1>{game.title}</h1>
+                    <span className="levels">MaxLevel: {game.maxLevel}</span>
+                    <p className="type">{game.category}</p>
                 </div>
 
-                <p className="text"></p>
+                <p className="text">{game.summary}</p>
 
                 {/* <!-- Bonus ( for Guests and Users ) --> */}
                 <div className="details-comments">
@@ -29,21 +50,21 @@ export default function () {
                 </div>
 
                 {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
-                <div className="buttons">
+                {/* <div className="buttons">
                     <a href="#" className="button">
                         Edit
                     </a>
                     <a href="#" className="button">
                         Delete
                     </a>
-                </div>
+                </div> */}
             </div>
 
             {/* <!-- Bonus --> */}
             {/* <!-- Add Comment ( Only for logged-in users, which is not creators of the current game ) --> */}
             <article className="create-comment">
                 <label>Add new comment:</label>
-                <form className="form">
+                <form className="form" onSubmit={addCommentHandler}>
                     <textarea
                         name="comment"
                         placeholder="Comment......"
